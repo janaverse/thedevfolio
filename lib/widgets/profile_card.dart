@@ -1,9 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../theme/app_theme.dart';
 
 class ProfileCard extends StatelessWidget {
   const ProfileCard({super.key});
+
+  Future<void> _openGitHub() async {
+    final Uri url = Uri.parse(
+      'https://github.com/janaverse',
+    );
+
+    await launchUrl(
+      url,
+      mode: LaunchMode.externalApplication,
+    );
+  }
+
+  Future<void> _openEmail() async {
+    final Uri emailUri = Uri(
+      scheme: 'mailto',
+      path: 'j.almeziney@gmail.com',
+    );
+
+    await launchUrl(emailUri);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +43,7 @@ class ProfileCard extends StatelessWidget {
       ),
       child: Column(
         children: [
+          // Profile Logo
           Container(
             width: 150,
             height: 150,
@@ -38,10 +60,13 @@ class ProfileCard extends StatelessWidget {
                 ),
               ],
             ),
-            child: const Icon(
-              Icons.person_outline_rounded,
-              size: 85,
-              color: AppTheme.pink,
+            child: ClipOval(
+              child: Image.asset(
+                'assets/images/my_logo.png',
+                width: 150,
+                height: 150,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
 
@@ -61,7 +86,7 @@ class ProfileCard extends StatelessWidget {
             'Jana Hassan AL Meziney',
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: 28,
+              fontSize: 20,
               fontWeight: FontWeight.bold,
               color: AppTheme.pink,
             ),
@@ -114,19 +139,17 @@ class ProfileCard extends StatelessWidget {
             children: [
               SocialButton(
                 icon: FontAwesomeIcons.github,
-                onTap: () {},
+                onTap: _openGitHub,
               ),
+
               SocialButton(
                 icon: FontAwesomeIcons.linkedinIn,
                 onTap: () {},
               ),
-              SocialButton(
-                icon: FontAwesomeIcons.instagram,
-                onTap: () {},
-              ),
+
               SocialButton(
                 icon: Icons.email_outlined,
-                onTap: () {},
+                onTap: _openEmail,
               ),
             ],
           ),

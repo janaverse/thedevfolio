@@ -38,16 +38,12 @@ class AboutSection extends StatelessWidget {
               TextSpan(text: 'Turning '),
               TextSpan(
                 text: 'Ideas',
-                style: TextStyle(
-                  color: AppTheme.pink,
-                ),
+                style: TextStyle(color: AppTheme.pink),
               ),
               TextSpan(text: ' into\nBeautiful '),
               TextSpan(
                 text: 'Experiences',
-                style: TextStyle(
-                  color: AppTheme.pink,
-                ),
+                style: TextStyle(color: AppTheme.pink),
               ),
             ],
           ),
@@ -86,40 +82,16 @@ class InformationGrid extends StatelessWidget {
     final int columns = width >= 1100
         ? 3
         : width >= 650
-            ? 2
-            : 1;
+        ? 2
+        : 1;
 
     final items = [
-      [
-        'Education',
-        'B.Sc. in Computer Science',
-        Icons.school_outlined,
-      ],
-      [
-        'University',
-        'Taibah University',
-        Icons.account_balance_outlined,
-      ],
-      [
-        'Graduation',
-        '2026',
-        Icons.calendar_month_outlined,
-      ],
-      [
-        'Specialization',
-        'Computer Science',
-        Icons.code_rounded,
-      ],
-      [
-        'Location',
-        'Madinah, Saudi Arabia',
-        Icons.location_on_outlined,
-      ],
-      [
-        'Focus',
-        'Web Development',
-        Icons.web_outlined,
-      ],
+      ['Education', 'B.Sc. in Computer Science', Icons.school_outlined],
+      ['University', 'Taibah University', Icons.account_balance_outlined],
+      ['Graduation', '2026', Icons.calendar_month_outlined],
+      ['Specialization', 'Computer Science', Icons.code_rounded],
+      ['Location', 'Madinah, Saudi Arabia', Icons.location_on_outlined],
+      ['Focus', 'Web Development', Icons.web_outlined],
     ];
 
     return Container(
@@ -127,9 +99,7 @@ class InformationGrid extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppTheme.card,
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: AppTheme.pink.withOpacity(.2),
-        ),
+        border: Border.all(color: AppTheme.pink.withOpacity(.2)),
       ),
       child: GridView.builder(
         shrinkWrap: true,
@@ -147,25 +117,17 @@ class InformationGrid extends StatelessWidget {
           return Container(
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.white.withOpacity(.05),
-              ),
+              border: Border.all(color: Colors.white.withOpacity(.05)),
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(
-                  item[2] as IconData,
-                  color: AppTheme.pink,
-                  size: 27,
-                ),
+                Icon(item[2] as IconData, color: AppTheme.pink, size: 27),
                 const SizedBox(height: 8),
                 Text(
                   item[0] as String,
                   textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 5),
                 Text(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../theme/app_theme.dart';
 
 class SkillsSection extends StatelessWidget {
@@ -6,19 +7,15 @@ class SkillsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final skills = [
-      ['Dart', 0.85],
-      ['Flutter', 0.85],
-      ['HTML', 0.80],
-      ['CSS', 0.75],
-      ['Firebase', 0.70],
-    ];
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        // =========================
+        // PROJECTS
+        // =========================
+
         const Text(
-          'SKILLS',
+          'PROJECTS',
           style: TextStyle(
             color: AppTheme.pink,
             fontSize: 16,
@@ -29,54 +26,57 @@ class SkillsSection extends StatelessWidget {
 
         const SizedBox(height: 20),
 
-        Wrap(
-          spacing: 15,
-          runSpacing: 20,
-          children: skills.map((skill) {
-            return SkillCard(
-              name: skill[0] as String,
-              percentage: skill[1] as double,
-            );
-          }).toList(),
-        ),
-
-        const SizedBox(height: 40),
-
-        const Text(
-          'TOOLS & TECHNOLOGIES',
-          style: TextStyle(
-            color: AppTheme.pink,
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-            letterSpacing: 2,
-          ),
-        ),
-
-        const SizedBox(height: 20),
-
-        Wrap(
-          spacing: 12,
-          runSpacing: 12,
-          children: const [
-            ToolChip(
-              icon: Icons.code,
-              name: 'VS Code',
-            ),
-            ToolChip(
-              icon: Icons.source,
-              name: 'GitHub',
-            ),
-            ToolChip(
-              icon: Icons.cloud_outlined,
-              name: 'Firebase',
-            ),
+        const ProjectCard(
+          title: 'Amoora Bloom',
+          description:
+              'A modern gift and flower shop website designed to showcase products and make online browsing simple and elegant.',
+          technologies: [
+            'Flutter Web',
+            'Dart',
+            'Responsive Design',
           ],
+          imagePath: 'assets/images/amoorabloom.png',
+          demoUrl: 'https://amoorabloom.netlify.app/',
+        ),
+
+        const SizedBox(height: 15),
+
+        const ProjectCard(
+          title: 'Jana Portfolio',
+          description:
+              'A responsive personal portfolio website showcasing my projects, education, certificates, and contact information.',
+          technologies: [
+            'Flutter Web',
+            'Dart',
+            'Responsive Design',
+          ],
+          imagePath: 'assets/images/thedevfolio.png',
+          demoUrl: 'https://thedevfolio.netlify.app/',
+        ),
+
+        const SizedBox(height: 15),
+
+        const ProjectCard(
+          title: 'Watto App',
+          description:
+              'A responsive web project built with Flutter, designed with a clean and user-friendly interface.',
+          technologies: [
+            'Flutter',
+            'Dart',
+            'Responsive Design',
+          ],
+          imagePath: 'assets/images/watto.png',
+          demoUrl: 'https://wattoapp.netlify.app/',
         ),
 
         const SizedBox(height: 40),
 
+        // =========================
+        // CERTIFICATES
+        // =========================
+
         const Text(
-          'COURSES',
+          'CERTIFICATES',
           style: TextStyle(
             color: AppTheme.pink,
             fontSize: 16,
@@ -87,151 +87,304 @@ class SkillsSection extends StatelessWidget {
 
         const SizedBox(height: 20),
 
-        const CourseCard(
+        CourseCard(
           title: 'Dart Courses',
           platform: 'Satr Platform',
           hours: '7 Hours',
+          pdfPath: 'certificates/Dart.pdf',
         ),
 
         const SizedBox(height: 12),
 
-        const CourseCard(
+        CourseCard(
           title: 'Flutter Courses',
           platform: 'Satr Platform',
           hours: '7 Hours',
+          pdfPath: 'certificates/Flutter.pdf',
         ),
 
         const SizedBox(height: 12),
 
-        const CourseCard(
+        CourseCard(
           title: 'UI/UX Courses',
           platform: 'Satr Platform',
           hours: '6 Hours',
+          pdfPath: 'certificates/UX_UI.pdf',
         ),
       ],
     );
   }
 }
 
-class SkillCard extends StatelessWidget {
-  final String name;
-  final double percentage;
+// =====================================================
+// PROJECT CARD
+// =====================================================
 
-  const SkillCard({
+class ProjectCard extends StatefulWidget {
+  final String title;
+  final String description;
+  final List<String> technologies;
+  final String imagePath;
+  final String demoUrl;
+
+  const ProjectCard({
     super.key,
-    required this.name,
-    required this.percentage,
+    required this.title,
+    required this.description,
+    required this.technologies,
+    required this.imagePath,
+    required this.demoUrl,
   });
 
   @override
-  Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
+  State<ProjectCard> createState() => _ProjectCardState();
+}
 
-    return SizedBox(
-      width: width < 400 ? 135 : 150,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            width: 60,
-            height: 60,
-            decoration: BoxDecoration(
-              color: AppTheme.card,
-              borderRadius: BorderRadius.circular(15),
-              border: Border.all(
-                color: AppTheme.pink.withOpacity(.2),
+class _ProjectCardState extends State<ProjectCard> {
+  bool isExpanded = false;
+
+  Future<void> _openLink() async {
+    final uri = Uri.parse(widget.demoUrl);
+
+    await launchUrl(
+      uri,
+      mode: LaunchMode.externalApplication,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          isExpanded = !isExpanded;
+        });
+      },
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 350),
+        curve: Curves.easeInOut,
+        width: double.infinity,
+        decoration: BoxDecoration(
+          color: AppTheme.card,
+          borderRadius: BorderRadius.circular(18),
+          border: Border.all(
+            color: isExpanded
+                ? AppTheme.pink.withOpacity(.35)
+                : Colors.white.withOpacity(.08),
+          ),
+          boxShadow: isExpanded
+              ? [
+                  BoxShadow(
+                    color: AppTheme.pink.withOpacity(.08),
+                    blurRadius: 25,
+                    spreadRadius: 1,
+                  ),
+                ]
+              : [],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // =========================
+            // PROJECT IMAGE
+            // =========================
+
+            ClipRRect(
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(18),
+                topRight: Radius.circular(18),
+              ),
+              child: AspectRatio(
+                aspectRatio: 16 / 7,
+                child: Image.asset(
+                  widget.imagePath,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) {
+                    return Container(
+                      color: AppTheme.card,
+                      child: const Center(
+                        child: Icon(
+                          Icons.image_outlined,
+                          color: AppTheme.pink,
+                          size: 40,
+                        ),
+                      ),
+                    );
+                  },
+                ),
               ),
             ),
-            child: const Icon(
-              Icons.code,
-              color: AppTheme.pink,
+
+            // =========================
+            // CARD CONTENT
+            // =========================
+
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Title + Arrow
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          widget.title,
+                          style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+
+                      AnimatedRotation(
+                        duration: const Duration(milliseconds: 300),
+                        turns: isExpanded ? 0.5 : 0,
+                        child: const Icon(
+                          Icons.keyboard_arrow_down_rounded,
+                          color: AppTheme.pink,
+                          size: 27,
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  const SizedBox(height: 10),
+
+                  // Description
+                  Text(
+                    widget.description,
+                    maxLines: isExpanded ? null : 2,
+                    overflow: isExpanded
+                        ? TextOverflow.visible
+                        : TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      color: AppTheme.textSecondary,
+                      height: 1.5,
+                      fontSize: 14,
+                    ),
+                  ),
+
+                  const SizedBox(height: 15),
+
+                  // Technologies
+                  Wrap(
+                    spacing: 8,
+                    runSpacing: 8,
+                    children: widget.technologies.map((technology) {
+                      return Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 10,
+                          vertical: 7,
+                        ),
+                        decoration: BoxDecoration(
+                          color: AppTheme.pink.withOpacity(.10),
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(
+                            color: AppTheme.pink.withOpacity(.15),
+                          ),
+                        ),
+                        child: Text(
+                          technology,
+                          style: const TextStyle(
+                            color: AppTheme.pink,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      );
+                    }).toList(),
+                  ),
+
+                  // =========================
+                  // EXPANDED CONTENT
+                  // =========================
+
+                  AnimatedSize(
+                    duration: const Duration(milliseconds: 350),
+                    curve: Curves.easeInOut,
+                    child: isExpanded
+                        ? Column(
+                            children: [
+                              const SizedBox(height: 20),
+
+                              const Divider(
+                                color: Color(0xFF30303A),
+                              ),
+
+                              const SizedBox(height: 18),
+
+                              SizedBox(
+                                width: double.infinity,
+                                child: OutlinedButton.icon(
+                                  onPressed: _openLink,
+                                  icon: const Icon(
+                                    Icons.open_in_new_rounded,
+                                    size: 18,
+                                  ),
+                                  label: const Text(
+                                    'Live Demo',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  style: OutlinedButton.styleFrom(
+                                    foregroundColor: AppTheme.pink,
+                                    side: BorderSide(
+                                      color:
+                                          AppTheme.pink.withOpacity(.35),
+                                    ),
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: 13,
+                                    ),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(10),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          )
+                        : const SizedBox.shrink(),
+                  ),
+                ],
+              ),
             ),
-          ),
-
-          const SizedBox(height: 10),
-
-          Text(
-            name,
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-
-          const SizedBox(height: 7),
-
-          LinearProgressIndicator(
-            value: percentage,
-            minHeight: 5,
-            backgroundColor: Colors.white12,
-            color: AppTheme.pink,
-            borderRadius: BorderRadius.circular(10),
-          ),
-
-          const SizedBox(height: 5),
-
-          Text(
-            '${(percentage * 100).toInt()}%',
-            style: const TextStyle(
-              color: AppTheme.textSecondary,
-              fontSize: 12,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class ToolChip extends StatelessWidget {
-  final IconData icon;
-  final String name;
-
-  const ToolChip({
-    super.key,
-    required this.icon,
-    required this.name,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 18,
-        vertical: 14,
-      ),
-      decoration: BoxDecoration(
-        color: AppTheme.card,
-        borderRadius: BorderRadius.circular(14),
-        border: Border.all(
-          color: Colors.white.withOpacity(.08),
+          ],
         ),
       ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(
-            icon,
-            color: AppTheme.pink,
-          ),
-          const SizedBox(width: 10),
-          Text(name),
-        ],
-      ),
     );
   }
 }
+
+// =====================================================
+// CERTIFICATE CARD
+// =====================================================
 
 class CourseCard extends StatelessWidget {
   final String title;
   final String platform;
   final String hours;
+  final String pdfPath;
 
   const CourseCard({
     super.key,
     required this.title,
     required this.platform,
     required this.hours,
+    required this.pdfPath,
   });
+
+  Future<void> _openPdf() async {
+    final uri = Uri.base.resolve(pdfPath);
+
+    await launchUrl(
+      uri,
+      webOnlyWindowName: '_self',
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -245,50 +398,93 @@ class CourseCard extends StatelessWidget {
           color: Colors.white.withOpacity(.08),
         ),
       ),
-      child: Row(
+      child: Column(
         children: [
-          Container(
-            width: 48,
-            height: 48,
-            decoration: BoxDecoration(
-              color: AppTheme.pink.withOpacity(.12),
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: const Icon(
-              Icons.school_outlined,
-              color: AppTheme.pink,
-            ),
+          Row(
+            children: [
+              Container(
+                width: 48,
+                height: 48,
+                decoration: BoxDecoration(
+                  color: AppTheme.pink.withOpacity(.12),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: const Icon(
+                  Icons.school_outlined,
+                  color: AppTheme.pink,
+                ),
+              ),
+
+              const SizedBox(width: 15),
+
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+
+                    const SizedBox(height: 5),
+
+                    Text(
+                      platform,
+                      style: const TextStyle(
+                        color: AppTheme.textSecondary,
+                        fontSize: 13,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              Text(
+                hours,
+                style: const TextStyle(
+                  color: AppTheme.pink,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
           ),
 
-          const SizedBox(width: 15),
+          const SizedBox(height: 16),
 
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),
+          SizedBox(
+            width: double.infinity,
+            child: OutlinedButton(
+              onPressed: _openPdf,
+              style: OutlinedButton.styleFrom(
+                foregroundColor: AppTheme.pink,
+                side: BorderSide(
+                  color: AppTheme.pink.withOpacity(.35),
                 ),
-                const SizedBox(height: 5),
-                Text(
-                  platform,
-                  style: const TextStyle(
-                    color: AppTheme.textSecondary,
-                    fontSize: 13,
-                  ),
+                padding: const EdgeInsets.symmetric(
+                  vertical: 13,
                 ),
-              ],
-            ),
-          ),
-
-          Text(
-            hours,
-            style: const TextStyle(
-              color: AppTheme.pink,
-              fontWeight: FontWeight.bold,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Text(
+                    'View Certificate',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(width: 8),
+                  Icon(
+                    Icons.workspace_premium_outlined,
+                    size: 19,
+                  ),
+                ],
+              ),
             ),
           ),
         ],

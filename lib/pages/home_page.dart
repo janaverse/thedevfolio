@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../theme/app_theme.dart';
 import '../widgets/profile_card.dart';
 import '../widgets/about_section.dart';
@@ -20,9 +21,7 @@ class HomePage extends StatelessWidget {
           physics: const BouncingScrollPhysics(),
           child: Center(
             child: ConstrainedBox(
-              constraints: const BoxConstraints(
-                maxWidth: 1400,
-              ),
+              constraints: const BoxConstraints(maxWidth: 1400),
               child: Padding(
                 padding: EdgeInsets.symmetric(
                   horizontal: isDesktop
@@ -85,6 +84,29 @@ class MainContent extends StatelessWidget {
 class ContactSection extends StatelessWidget {
   const ContactSection({super.key});
 
+  Future<void> _openEmail() async {
+    final Uri emailUri = Uri(
+      scheme: 'mailto',
+      path: 'j.almeziney@gmail.com',
+      queryParameters: {
+        'subject': 'Portfolio Contact',
+      },
+    );
+
+    await launchUrl(emailUri);
+  }
+
+  Future<void> _openWhatsApp() async {
+    final Uri whatsappUri = Uri.parse(
+      'https://wa.me/966509209415',
+    );
+
+    await launchUrl(
+      whatsappUri,
+      mode: LaunchMode.externalApplication,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -143,12 +165,26 @@ class ContactSection extends StatelessWidget {
 
                 const SizedBox(height: 20),
 
-                SizedBox(
-                  width: double.infinity,
-                  child: OutlinedButton(
-                    onPressed: () {},
-                    child: const Text('Get In Touch'),
-                  ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: _ContactButton(
+                        icon: Icons.email_outlined,
+                        label: 'Email',
+                        onPressed: _openEmail,
+                      ),
+                    ),
+
+                    const SizedBox(width: 12),
+
+                    Expanded(
+                      child: _ContactButton(
+                        icon: Icons.chat_outlined,
+                        label: 'WhatsApp',
+                        onPressed: _openWhatsApp,
+                      ),
+                    ),
+                  ],
                 ),
               ],
             )
@@ -166,7 +202,9 @@ class ContactSection extends StatelessWidget {
                     color: Colors.black,
                   ),
                 ),
+
                 const SizedBox(width: 20),
+
                 const Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -189,12 +227,59 @@ class ContactSection extends StatelessWidget {
                     ],
                   ),
                 ),
-                OutlinedButton(
-                  onPressed: () {},
-                  child: const Text('Get In Touch'),
+
+                _ContactButton(
+                  icon: Icons.email_outlined,
+                  label: 'Email',
+                  onPressed: _openEmail,
+                ),
+
+                const SizedBox(width: 10),
+
+                _ContactButton(
+                  icon: Icons.chat_outlined,
+                  label: 'WhatsApp',
+                  onPressed: _openWhatsApp,
                 ),
               ],
             ),
+    );
+  }
+}
+
+class _ContactButton extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final VoidCallback onPressed;
+
+  const _ContactButton({
+    required this.icon,
+    required this.label,
+    required this.onPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return OutlinedButton.icon(
+      onPressed: onPressed,
+      icon: Icon(
+        icon,
+        size: 19,
+      ),
+      label: Text(label),
+      style: OutlinedButton.styleFrom(
+        foregroundColor: AppTheme.pink,
+        side: BorderSide(
+          color: AppTheme.pink.withOpacity(.35),
+        ),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 14,
+          vertical: 13,
+        ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+      ),
     );
   }
 }
