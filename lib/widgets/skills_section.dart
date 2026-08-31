@@ -42,16 +42,17 @@ class SkillsSection extends StatelessWidget {
         const SizedBox(height: 15),
 
         const ProjectCard(
-          title: 'Jana Portfolio',
+          title: 'SwiftCode',
           description:
-              'A responsive personal portfolio website showcasing my projects, education, certificates, and contact information.',
+              'An Arabic QR code platform that allows users to generate, scan, save, share, and open QR codes through the camera or images.',
           technologies: [
-            'Flutter Web',
+            'Flutter',
             'Dart',
+            'QR Scanner',
             'Responsive Design',
           ],
-          imagePath: 'assets/images/thedevfolio.png',
-          demoUrl: 'https://thedevfolio.netlify.app/',
+          imagePath: 'assets/images/swiftcode.png',
+          demoUrl: 'https://swiftcode-qr.netlify.app/',
         ),
 
         const SizedBox(height: 15),
@@ -67,6 +68,21 @@ class SkillsSection extends StatelessWidget {
           ],
           imagePath: 'assets/images/watto.png',
           demoUrl: 'https://wattoapp.netlify.app/',
+        ),
+
+        const SizedBox(height: 15),
+
+        const ProjectCard(
+          title: 'Jana Portfolio',
+          description:
+              'A responsive personal portfolio website showcasing my projects, education, certificates, and contact information.',
+          technologies: [
+            'Flutter Web',
+            'Dart',
+            'Responsive Design',
+          ],
+          imagePath: 'assets/images/thedevfolio.png',
+          demoUrl: 'https://thedevfolio.netlify.app/',
         ),
 
         const SizedBox(height: 40),
@@ -226,6 +242,7 @@ class _ProjectCardState extends State<ProjectCard> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // Title + Arrow
+
                   Row(
                     children: [
                       Expanded(
@@ -253,6 +270,7 @@ class _ProjectCardState extends State<ProjectCard> {
                   const SizedBox(height: 10),
 
                   // Description
+
                   Text(
                     widget.description,
                     maxLines: isExpanded ? null : 2,
@@ -269,6 +287,7 @@ class _ProjectCardState extends State<ProjectCard> {
                   const SizedBox(height: 15),
 
                   // Technologies
+
                   Wrap(
                     spacing: 8,
                     runSpacing: 8,
@@ -469,9 +488,9 @@ class CourseCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
-              child: Row(
+              child: const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
+                children: [
                   Text(
                     'View Certificate',
                     style: TextStyle(
