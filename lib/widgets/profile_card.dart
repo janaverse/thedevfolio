@@ -44,7 +44,7 @@ class ProfileCard extends StatelessWidget {
 
     await launchUrl(
       url,
-      webOnlyWindowName: '_self',
+      webOnlyWindowName: '_blank',
     );
   }
 
