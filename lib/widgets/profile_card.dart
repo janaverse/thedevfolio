@@ -42,10 +42,12 @@ class ProfileCard extends StatelessWidget {
       'https://thedevfolio.netlify.app/certificates/Jana_Almeziney_CV.pdf',
     );
 
-    await launchUrl(
-      url,
-      mode: LaunchMode.externalApplication,
-    );
+    if (await canLaunchUrl(url)) {
+      await launchUrl(
+        url,
+        mode: LaunchMode.platformDefault,
+      );
+    }
   }
 
   @override
