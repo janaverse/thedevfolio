@@ -1,6 +1,6 @@
+import 'dart:html' as html;
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:url_launcher/link.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../theme/app_theme.dart';
 
@@ -36,6 +36,10 @@ class ProfileCard extends StatelessWidget {
     );
 
     await launchUrl(emailUri);
+  }
+
+  void _openCV() {
+    html.window.location.href = 'cv.html';
   }
 
   @override
@@ -148,22 +152,14 @@ class ProfileCard extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 30),
-          Link(
-            uri: Uri.parse(
-              'https://thedevfolio.netlify.app/certificates/Jana_Almeziney_CV.pdf',
+          SizedBox(
+            width: double.infinity,
+            height: 48,
+            child: OutlinedButton.icon(
+              onPressed: _openCV,
+              icon: const Icon(Icons.download),
+              label: const Text('Download CV'),
             ),
-            target: LinkTarget.blank,
-            builder: (context, openLink) {
-              return SizedBox(
-                width: double.infinity,
-                height: 48,
-                child: OutlinedButton.icon(
-                  onPressed: openLink,
-                  icon: const Icon(Icons.download),
-                  label: const Text('Download CV'),
-                ),
-              );
-            },
           ),
         ],
       ),
