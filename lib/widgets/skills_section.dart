@@ -10,10 +10,6 @@ class SkillsSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // =========================
-        // PROJECTS
-        // =========================
-
         const Text(
           'PROJECTS',
           style: TextStyle(
@@ -23,9 +19,7 @@ class SkillsSection extends StatelessWidget {
             letterSpacing: 2,
           ),
         ),
-
         const SizedBox(height: 20),
-
         const ProjectCard(
           title: 'Amoora Bloom',
           description:
@@ -38,9 +32,7 @@ class SkillsSection extends StatelessWidget {
           imagePath: 'assets/images/amoorabloom.png',
           demoUrl: 'https://amoorabloom.netlify.app/',
         ),
-
         const SizedBox(height: 15),
-
         const ProjectCard(
           title: 'SwiftCode',
           description:
@@ -54,9 +46,7 @@ class SkillsSection extends StatelessWidget {
           imagePath: 'assets/images/swiftcode.png',
           demoUrl: 'https://swiftcode-qr.netlify.app/',
         ),
-
         const SizedBox(height: 15),
-
         const ProjectCard(
           title: 'Watto App',
           description:
@@ -69,9 +59,7 @@ class SkillsSection extends StatelessWidget {
           imagePath: 'assets/images/watto.png',
           demoUrl: 'https://wattoapp.netlify.app/',
         ),
-
         const SizedBox(height: 15),
-
         const ProjectCard(
           title: 'Jana Portfolio',
           description:
@@ -84,13 +72,7 @@ class SkillsSection extends StatelessWidget {
           imagePath: 'assets/images/thedevfolio.png',
           demoUrl: 'https://thedevfolio.netlify.app/',
         ),
-
         const SizedBox(height: 40),
-
-        // =========================
-        // CERTIFICATES
-        // =========================
-
         const Text(
           'CERTIFICATES',
           style: TextStyle(
@@ -100,27 +82,21 @@ class SkillsSection extends StatelessWidget {
             letterSpacing: 2,
           ),
         ),
-
         const SizedBox(height: 20),
-
         CourseCard(
           title: 'Dart Courses',
           platform: 'Satr Platform',
           hours: '7 Hours',
           pdfPath: 'certificates/Dart.pdf',
         ),
-
         const SizedBox(height: 12),
-
         CourseCard(
           title: 'Flutter Courses',
           platform: 'Satr Platform',
           hours: '7 Hours',
           pdfPath: 'certificates/Flutter.pdf',
         ),
-
         const SizedBox(height: 12),
-
         CourseCard(
           title: 'UI/UX Courses',
           platform: 'Satr Platform',
@@ -131,10 +107,6 @@ class SkillsSection extends StatelessWidget {
     );
   }
 }
-
-// =====================================================
-// PROJECT CARD
-// =====================================================
 
 class ProjectCard extends StatefulWidget {
   final String title;
@@ -201,10 +173,6 @@ class _ProjectCardState extends State<ProjectCard> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // =========================
-            // PROJECT IMAGE
-            // =========================
-
             ClipRRect(
               borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(18),
@@ -231,18 +199,11 @@ class _ProjectCardState extends State<ProjectCard> {
                 ),
               ),
             ),
-
-            // =========================
-            // CARD CONTENT
-            // =========================
-
             Padding(
               padding: const EdgeInsets.all(20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Title + Arrow
-
                   Row(
                     children: [
                       Expanded(
@@ -254,7 +215,6 @@ class _ProjectCardState extends State<ProjectCard> {
                           ),
                         ),
                       ),
-
                       AnimatedRotation(
                         duration: const Duration(milliseconds: 300),
                         turns: isExpanded ? 0.5 : 0,
@@ -266,11 +226,7 @@ class _ProjectCardState extends State<ProjectCard> {
                       ),
                     ],
                   ),
-
                   const SizedBox(height: 10),
-
-                  // Description
-
                   Text(
                     widget.description,
                     maxLines: isExpanded ? null : 2,
@@ -283,11 +239,7 @@ class _ProjectCardState extends State<ProjectCard> {
                       fontSize: 14,
                     ),
                   ),
-
                   const SizedBox(height: 15),
-
-                  // Technologies
-
                   Wrap(
                     spacing: 8,
                     runSpacing: 8,
@@ -315,11 +267,6 @@ class _ProjectCardState extends State<ProjectCard> {
                       );
                     }).toList(),
                   ),
-
-                  // =========================
-                  // EXPANDED CONTENT
-                  // =========================
-
                   AnimatedSize(
                     duration: const Duration(milliseconds: 350),
                     curve: Curves.easeInOut,
@@ -327,13 +274,10 @@ class _ProjectCardState extends State<ProjectCard> {
                         ? Column(
                             children: [
                               const SizedBox(height: 20),
-
                               const Divider(
                                 color: Color(0xFF30303A),
                               ),
-
                               const SizedBox(height: 18),
-
                               SizedBox(
                                 width: double.infinity,
                                 child: OutlinedButton.icon(
@@ -377,10 +321,6 @@ class _ProjectCardState extends State<ProjectCard> {
     );
   }
 }
-
-// =====================================================
-// CERTIFICATE CARD
-// =====================================================
 
 class CourseCard extends StatelessWidget {
   final String title;
@@ -433,9 +373,7 @@ class CourseCard extends StatelessWidget {
                   color: AppTheme.pink,
                 ),
               ),
-
               const SizedBox(width: 15),
-
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -446,9 +384,7 @@ class CourseCard extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-
                     const SizedBox(height: 5),
-
                     Text(
                       platform,
                       style: const TextStyle(
@@ -459,7 +395,6 @@ class CourseCard extends StatelessWidget {
                   ],
                 ),
               ),
-
               Text(
                 hours,
                 style: const TextStyle(
@@ -469,9 +404,7 @@ class CourseCard extends StatelessWidget {
               ),
             ],
           ),
-
           const SizedBox(height: 16),
-
           SizedBox(
             width: double.infinity,
             child: OutlinedButton(

@@ -23,9 +23,7 @@ class AboutSection extends StatelessWidget {
             letterSpacing: 2,
           ),
         ),
-
         const SizedBox(height: 15),
-
         RichText(
           text: TextSpan(
             style: TextStyle(
@@ -48,9 +46,7 @@ class AboutSection extends StatelessWidget {
             ],
           ),
         ),
-
         const SizedBox(height: 20),
-
         Text(
           "I'm a Computer Science graduate from Taibah University with a passion "
           "for building modern and user-friendly web experiences. I enjoy "
@@ -63,9 +59,7 @@ class AboutSection extends StatelessWidget {
             height: 1.8,
           ),
         ),
-
         const SizedBox(height: 30),
-
         const InformationGrid(),
       ],
     );
@@ -82,8 +76,8 @@ class InformationGrid extends StatelessWidget {
     final int columns = width >= 1100
         ? 3
         : width >= 650
-        ? 2
-        : 1;
+            ? 2
+            : 1;
 
     final items = [
       ['Education', 'B.Sc. in Computer Science', Icons.school_outlined],
@@ -99,7 +93,9 @@ class InformationGrid extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppTheme.card,
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: AppTheme.pink.withOpacity(.2)),
+        border: Border.all(
+          color: AppTheme.pink.withOpacity(.2),
+        ),
       ),
       child: GridView.builder(
         shrinkWrap: true,
@@ -117,17 +113,25 @@ class InformationGrid extends StatelessWidget {
           return Container(
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              border: Border.all(color: Colors.white.withOpacity(.05)),
+              border: Border.all(
+                color: Colors.white.withOpacity(.05),
+              ),
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(item[2] as IconData, color: AppTheme.pink, size: 27),
+                Icon(
+                  item[2] as IconData,
+                  color: AppTheme.pink,
+                  size: 27,
+                ),
                 const SizedBox(height: 8),
                 Text(
                   item[0] as String,
                   textAlign: TextAlign.center,
-                  style: const TextStyle(fontWeight: FontWeight.bold),
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 const SizedBox(height: 5),
                 Text(

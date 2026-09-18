@@ -12,18 +12,15 @@ class AppTheme {
     brightness: Brightness.dark,
     scaffoldBackgroundColor: background,
     fontFamily: 'Arial',
-
     colorScheme: const ColorScheme.dark(
       primary: pink,
       secondary: lightPink,
       surface: card,
     ),
-
     appBarTheme: const AppBarTheme(
       backgroundColor: Colors.transparent,
       elevation: 0,
     ),
-
     textTheme: const TextTheme(
       bodyLarge: TextStyle(
         color: textPrimary,

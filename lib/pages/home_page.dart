@@ -27,22 +27,17 @@ class HomePage extends StatelessWidget {
                   horizontal: isDesktop
                       ? 24
                       : isTablet
-                          ? 20
-                          : 16,
+                      ? 20
+                      : 16,
                   vertical: 24,
                 ),
                 child: isDesktop
                     ? Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: const [
-                          SizedBox(
-                            width: 350,
-                            child: ProfileCard(),
-                          ),
+                          SizedBox(width: 350, child: ProfileCard()),
                           SizedBox(width: 30),
-                          Expanded(
-                            child: MainContent(),
-                          ),
+                          Expanded(child: MainContent()),
                         ],
                       )
                     : Column(
@@ -88,23 +83,16 @@ class ContactSection extends StatelessWidget {
     final Uri emailUri = Uri(
       scheme: 'mailto',
       path: 'j.almeziney@gmail.com',
-      queryParameters: {
-        'subject': 'Portfolio Contact',
-      },
+      queryParameters: {'subject': 'Portfolio Contact'},
     );
 
     await launchUrl(emailUri);
   }
 
   Future<void> _openWhatsApp() async {
-    final Uri whatsappUri = Uri.parse(
-      'https://wa.me/966509209415',
-    );
+    final Uri whatsappUri = Uri.parse('https://wa.me/966509209415');
 
-    await launchUrl(
-      whatsappUri,
-      mode: LaunchMode.externalApplication,
-    );
+    await launchUrl(whatsappUri, mode: LaunchMode.externalApplication);
   }
 
   @override
@@ -118,9 +106,7 @@ class ContactSection extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppTheme.card,
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: AppTheme.pink.withOpacity(.25),
-        ),
+        border: Border.all(color: AppTheme.pink.withOpacity(.25)),
       ),
       child: isSmall
           ? Column(
@@ -153,18 +139,12 @@ class ContactSection extends StatelessWidget {
                     ),
                   ],
                 ),
-
                 const SizedBox(height: 15),
-
                 const Text(
                   'I am open to new opportunities and collaborations.',
-                  style: TextStyle(
-                    color: AppTheme.textSecondary,
-                  ),
+                  style: TextStyle(color: AppTheme.textSecondary),
                 ),
-
                 const SizedBox(height: 20),
-
                 Row(
                   children: [
                     Expanded(
@@ -174,9 +154,7 @@ class ContactSection extends StatelessWidget {
                         onPressed: _openEmail,
                       ),
                     ),
-
                     const SizedBox(width: 12),
-
                     Expanded(
                       child: _ContactButton(
                         icon: Icons.chat_outlined,
@@ -197,14 +175,9 @@ class ContactSection extends StatelessWidget {
                     color: AppTheme.pink,
                     shape: BoxShape.circle,
                   ),
-                  child: const Icon(
-                    Icons.send_rounded,
-                    color: Colors.black,
-                  ),
+                  child: const Icon(Icons.send_rounded, color: Colors.black),
                 ),
-
                 const SizedBox(width: 20),
-
                 const Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -220,22 +193,17 @@ class ContactSection extends StatelessWidget {
                       SizedBox(height: 5),
                       Text(
                         'I am open to new opportunities and collaborations.',
-                        style: TextStyle(
-                          color: AppTheme.textSecondary,
-                        ),
+                        style: TextStyle(color: AppTheme.textSecondary),
                       ),
                     ],
                   ),
                 ),
-
                 _ContactButton(
                   icon: Icons.email_outlined,
                   label: 'Email',
                   onPressed: _openEmail,
                 ),
-
                 const SizedBox(width: 10),
-
                 _ContactButton(
                   icon: Icons.chat_outlined,
                   label: 'WhatsApp',
@@ -262,23 +230,13 @@ class _ContactButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return OutlinedButton.icon(
       onPressed: onPressed,
-      icon: Icon(
-        icon,
-        size: 19,
-      ),
+      icon: Icon(icon, size: 19),
       label: Text(label),
       style: OutlinedButton.styleFrom(
         foregroundColor: AppTheme.pink,
-        side: BorderSide(
-          color: AppTheme.pink.withOpacity(.35),
-        ),
-        padding: const EdgeInsets.symmetric(
-          horizontal: 14,
-          vertical: 13,
-        ),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
+        side: BorderSide(color: AppTheme.pink.withOpacity(.35)),
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 13),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       ),
     );
   }
@@ -295,9 +253,7 @@ class Footer extends StatelessWidget {
         child: Text(
           '© 2026 Jana ALmeziney. All rights reserved.',
           textAlign: TextAlign.center,
-          style: TextStyle(
-            color: AppTheme.textSecondary,
-          ),
+          style: TextStyle(color: AppTheme.textSecondary),
         ),
       ),
     );

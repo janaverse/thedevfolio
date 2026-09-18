@@ -43,7 +43,6 @@ class ProfileCard extends StatelessWidget {
       ),
       child: Column(
         children: [
-          // Profile Logo
           Container(
             width: 150,
             height: 150,
@@ -69,9 +68,7 @@ class ProfileCard extends StatelessWidget {
               ),
             ),
           ),
-
           const SizedBox(height: 25),
-
           const Text(
             'Hi, I’m',
             style: TextStyle(
@@ -79,9 +76,7 @@ class ProfileCard extends StatelessWidget {
               color: AppTheme.textSecondary,
             ),
           ),
-
           const SizedBox(height: 5),
-
           const Text(
             'Jana Hassan AL Meziney',
             textAlign: TextAlign.center,
@@ -91,9 +86,7 @@ class ProfileCard extends StatelessWidget {
               color: AppTheme.pink,
             ),
           ),
-
           const SizedBox(height: 10),
-
           const Text(
             'Computer Science Graduate\n& Web Developer',
             textAlign: TextAlign.center,
@@ -103,37 +96,28 @@ class ProfileCard extends StatelessWidget {
               height: 1.6,
             ),
           ),
-
           const SizedBox(height: 30),
-
           const Divider(
             color: Color(0xFF30303A),
           ),
-
           const SizedBox(height: 20),
-
           const InfoRow(
             icon: Icons.school_outlined,
             text: 'B.Sc. in Computer Science',
           ),
-
           const InfoRow(
             icon: Icons.location_on_outlined,
             text: 'Madinah, Saudi Arabia',
           ),
-
           const InfoRow(
             icon: Icons.email_outlined,
             text: 'j.almeziney@gmail.com',
           ),
-
           const InfoRow(
             icon: Icons.phone_outlined,
             text: '+966 50 920 9415',
           ),
-
           const SizedBox(height: 25),
-
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -141,21 +125,17 @@ class ProfileCard extends StatelessWidget {
                 icon: FontAwesomeIcons.github,
                 onTap: _openGitHub,
               ),
-
               SocialButton(
                 icon: FontAwesomeIcons.linkedinIn,
                 onTap: () {},
               ),
-
               SocialButton(
                 icon: Icons.email_outlined,
                 onTap: _openEmail,
               ),
             ],
           ),
-
           const SizedBox(height: 30),
-
           SizedBox(
             width: double.infinity,
             height: 48,
