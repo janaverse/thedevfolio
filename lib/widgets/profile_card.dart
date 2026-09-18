@@ -39,7 +39,7 @@ class ProfileCard extends StatelessWidget {
 
   Future<void> _openCV() async {
     final uri = Uri.base.resolve(
-      'assets/Jana_Almeziney_CV.pdf',
+      'certificates/Jana_Almeziney_CV.pdf',
     );
 
     await launchUrl(
