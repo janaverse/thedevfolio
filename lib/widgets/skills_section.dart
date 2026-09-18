@@ -295,15 +295,13 @@ class _ProjectCardState extends State<ProjectCard> {
                                   style: OutlinedButton.styleFrom(
                                     foregroundColor: AppTheme.pink,
                                     side: BorderSide(
-                                      color:
-                                          AppTheme.pink.withOpacity(.35),
+                                      color: AppTheme.pink.withOpacity(.35),
                                     ),
                                     padding: const EdgeInsets.symmetric(
                                       vertical: 13,
                                     ),
                                     shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(10),
+                                      borderRadius: BorderRadius.circular(10),
                                     ),
                                   ),
                                 ),

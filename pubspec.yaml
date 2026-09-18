@@ -1,5 +1,7 @@
 name: my_portfolio
+
 description: "A new Flutter project."
+
 publish_to: 'none'
 
 version: 1.0.0+1
@@ -12,7 +14,9 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.8
+
   font_awesome_flutter: ^10.9.1
+
   url_launcher: ^6.3.2
 
 dev_dependencies:
@@ -26,4 +30,4 @@ flutter:
 
   assets:
     - assets/images/
-    
+    - assets/Jana_Almeziney_CV.pdf

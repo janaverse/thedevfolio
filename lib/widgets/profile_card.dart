@@ -17,6 +17,17 @@ class ProfileCard extends StatelessWidget {
     );
   }
 
+  Future<void> _openLinkedIn() async {
+    final Uri url = Uri.parse(
+      'https://www.linkedin.com/in/jana-almeziney',
+    );
+
+    await launchUrl(
+      url,
+      mode: LaunchMode.externalApplication,
+    );
+  }
+
   Future<void> _openEmail() async {
     final Uri emailUri = Uri(
       scheme: 'mailto',
@@ -24,6 +35,17 @@ class ProfileCard extends StatelessWidget {
     );
 
     await launchUrl(emailUri);
+  }
+
+  Future<void> _openCV() async {
+    final Uri url = Uri.base.resolve(
+      'assets/Jana_Almeziney_CV.pdf',
+    );
+
+    await launchUrl(
+      url,
+      webOnlyWindowName: '_self',
+    );
   }
 
   @override
@@ -127,7 +149,7 @@ class ProfileCard extends StatelessWidget {
               ),
               SocialButton(
                 icon: FontAwesomeIcons.linkedinIn,
-                onTap: () {},
+                onTap: _openLinkedIn,
               ),
               SocialButton(
                 icon: Icons.email_outlined,
@@ -140,7 +162,7 @@ class ProfileCard extends StatelessWidget {
             width: double.infinity,
             height: 48,
             child: OutlinedButton.icon(
-              onPressed: () {},
+              onPressed: _openCV,
               icon: const Icon(Icons.download),
               label: const Text('Download CV'),
             ),
