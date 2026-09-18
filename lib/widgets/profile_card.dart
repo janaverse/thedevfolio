@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../theme/app_theme.dart';
+import 'dart:html' as html;
 
 class ProfileCard extends StatelessWidget {
   const ProfileCard({super.key});
@@ -37,17 +38,11 @@ class ProfileCard extends StatelessWidget {
     await launchUrl(emailUri);
   }
 
-  Future<void> _openCV() async {
-    final Uri url = Uri.parse(
+  void _openCV() {
+    html.window.open(
       'https://thedevfolio.netlify.app/certificates/Jana_Almeziney_CV.pdf',
+      '_blank',
     );
-
-    if (await canLaunchUrl(url)) {
-      await launchUrl(
-        url,
-        mode: LaunchMode.platformDefault,
-      );
-    }
   }
 
   @override
