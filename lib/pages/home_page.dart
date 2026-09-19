@@ -95,26 +95,6 @@ class ContactSection extends StatelessWidget {
     await launchUrl(whatsappUri, mode: LaunchMode.externalApplication);
   }
 
-  Future<void> _openLinkedIn() async {
-    final Uri linkedInUri = Uri.parse(
-      'https://www.linkedin.com/in/jana-almeziney',
-    );
-
-    await launchUrl(
-      linkedInUri,
-      mode: LaunchMode.externalApplication,
-    );
-  }
-
-  Future<void> _openCV() async {
-    final Uri cvUri = Uri.parse('assets/Jana_ALmeziney_CV.pdf');
-
-    await launchUrl(
-      cvUri,
-      mode: LaunchMode.externalApplication,
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -184,26 +164,6 @@ class ContactSection extends StatelessWidget {
                     ),
                   ],
                 ),
-                const SizedBox(height: 12),
-                Row(
-                  children: [
-                    Expanded(
-                      child: _ContactButton(
-                        icon: Icons.work_outline,
-                        label: 'LinkedIn',
-                        onPressed: _openLinkedIn,
-                      ),
-                    ),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: _ContactButton(
-                        icon: Icons.picture_as_pdf_outlined,
-                        label: 'CV',
-                        onPressed: _openCV,
-                      ),
-                    ),
-                  ],
-                ),
               ],
             )
           : Row(
@@ -215,7 +175,10 @@ class ContactSection extends StatelessWidget {
                     color: AppTheme.pink,
                     shape: BoxShape.circle,
                   ),
-                  child: const Icon(Icons.send_rounded, color: Colors.black),
+                  child: const Icon(
+                    Icons.send_rounded,
+                    color: Colors.black,
+                  ),
                 ),
                 const SizedBox(width: 20),
                 const Expanded(
@@ -249,18 +212,6 @@ class ContactSection extends StatelessWidget {
                   label: 'WhatsApp',
                   onPressed: _openWhatsApp,
                 ),
-                const SizedBox(width: 10),
-                _ContactButton(
-                  icon: Icons.work_outline,
-                  label: 'LinkedIn',
-                  onPressed: _openLinkedIn,
-                ),
-                const SizedBox(width: 10),
-                _ContactButton(
-                  icon: Icons.picture_as_pdf_outlined,
-                  label: 'CV',
-                  onPressed: _openCV,
-                ),
               ],
             ),
     );
@@ -287,7 +238,10 @@ class _ContactButton extends StatelessWidget {
       style: OutlinedButton.styleFrom(
         foregroundColor: AppTheme.pink,
         side: BorderSide(color: AppTheme.pink.withOpacity(.35)),
-        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 13),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 14,
+          vertical: 13,
+        ),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
