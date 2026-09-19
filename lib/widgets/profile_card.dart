@@ -1,4 +1,3 @@
-import 'dart:html' as html;
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -38,16 +37,15 @@ class ProfileCard extends StatelessWidget {
     await launchUrl(emailUri);
   }
 
-  void _openCV() {
-    final anchor = html.AnchorElement(
-      href: 'https://thedevfolio.netlify.app/certificates/Jana_Almeziney_CV.pdf',
-    )
-      ..target = '_blank'
-      ..rel = 'noopener noreferrer';
+  Future<void> _openCV() async {
+    final Uri url = Uri.parse(
+      'https://thedevfolio.netlify.app/certificates/Jana_Almeziney_CV.pdf',
+    );
 
-    html.document.body?.append(anchor);
-    anchor.click();
-    anchor.remove();
+    await launchUrl(
+      url,
+      mode: LaunchMode.externalApplication,
+    );
   }
 
   @override
