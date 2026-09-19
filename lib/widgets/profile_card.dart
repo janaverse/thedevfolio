@@ -39,7 +39,15 @@ class ProfileCard extends StatelessWidget {
   }
 
   void _openCV() {
-    html.window.location.href = 'cv.html';
+    final anchor = html.AnchorElement(
+      href: 'https://thedevfolio.netlify.app/certificates/Jana_Almeziney_CV.pdf',
+    )
+      ..target = '_blank'
+      ..rel = 'noopener noreferrer';
+
+    html.document.body?.append(anchor);
+    anchor.click();
+    anchor.remove();
   }
 
   @override
